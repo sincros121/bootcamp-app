@@ -1,14 +1,16 @@
 
+
+
 resource "azurerm_linux_virtual_machine_scale_set" "web-application-VM-scale-set" {
-  name                = "web-application-VM-scale-set"
-  resource_group_name = var.rg-name
-  location            = var.location
-  sku                 = "Standard_F2"
-  instances           = 3
-  admin_username      = "ubuntu"
-  admin_password = var.VM-password
+  name                            = "web-application-VM-scale-set"
+  resource_group_name             = var.rg-name
+  location                        = var.location
+  sku                             = "Standard_B1s"
+  instances                       = 3
+  admin_username                  = "ubuntu"
+  admin_password                  = var.admin-password
   disable_password_authentication = false
-  custom_data = var.VM-custom-data
+  custom_data                     = var.VM-custom-data
 
 
   source_image_reference {
@@ -24,13 +26,87 @@ resource "azurerm_linux_virtual_machine_scale_set" "web-application-VM-scale-set
   }
 
   network_interface {
-    name    = "example"
+    name    = "vmss-nic"
     primary = true
 
+
     ip_configuration {
-      name      = "internal"
+      name      = "scale-set-ip-config"
       primary   = true
-      subnet_id = azurerm_subnet.internal.id
+      subnet_id = var.public-subnet-id
+      #load_balancer_backend_address_pool_ids = var.backend-pool-ids
+      #load_balancer_inbound_nat_rules_ids = var.inbound-nat-rule-ids
+    }
+  }
+}
+
+resource "azurerm_network_interface_backend_address_pool_association" "NIC-to-LB-backend-pool-association" {
+  network_interface_id    = var.NIC-id
+  ip_configuration_name   = "testconfiguration1"
+  backend_address_pool_id = var.backend_address_pool_id
+}
+
+resource "azurerm_network_interface_nat_rule_association" "NIC-to-LB-nat-rule-association" {
+  network_interface_id  = var.NIC-id
+  ip_configuration_name = "testconfiguration1"
+  nat_rule_id           = var.nat
+}
+
+
+resource "azurerm_monitor_autoscale_setting" "vmss-auto-scaling-setting" {
+  name                = "vmss-auto-scaling-setting"
+  resource_group_name = var.rg-name
+  location            = var.location
+  target_resource_id  = azurerm_linux_virtual_machine_scale_set.web-application-VM-scale-set.id
+
+  profile {
+    name = "default-profile"
+
+    capacity {
+      default = 3
+      minimum = 3
+      maximum = var.vmss-maximum-instances
+    }
+
+    rule {
+      metric_trigger {
+        metric_name        = "Percentage CPU"
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.web-application-VM-scale-set.id
+        time_grain         = "PT1M"
+        statistic          = "Average"
+        time_window        = "PT5M"
+        time_aggregation   = "Average"
+        operator           = "GreaterThan"
+        threshold          = 75
+        metric_namespace   = "microsoft.compute/virtualmachinescalesets"
+      }
+
+      scale_action {
+        direction = "Increase"
+        type      = "ChangeCount"
+        value     = "1"
+        cooldown  = "PT1M"
+      }
+    }
+
+    rule {
+      metric_trigger {
+        metric_name        = "Percentage CPU"
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.web-application-VM-scale-set.id
+        time_grain         = "PT1M"
+        statistic          = "Average"
+        time_window        = "PT5M"
+        time_aggregation   = "Average"
+        operator           = "LessThan"
+        threshold          = 25
+      }
+
+      scale_action {
+        direction = "Decrease"
+        type      = "ChangeCount"
+        value     = "1"
+        cooldown  = "PT1M"
+      }
     }
   }
 }

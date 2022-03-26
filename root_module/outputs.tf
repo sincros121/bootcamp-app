@@ -3,10 +3,8 @@ output "public-ip" {
 }
 
 output "VM-password" {
-  value = data.azurerm_key_vault_secret.vm-password.value
+  value = module.azure-vault.vm-password
   sensitive = true
 }
 
-#output "rendered-file" {
-#  value = data.template_file.custom-data-shell-script.rendered
-#}
+
