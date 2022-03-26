@@ -26,15 +26,16 @@ variable "public-subnet-id" {
   type = string
 }
 
-variable "backend-pool-id" {
-  type = string
+variable "backend-address-pool-ids" {
+  type = list(string)
 }
 
 
-variable "inbound-nat-rule-id" {
-  type = string
+variable "nat-rule-ids" {
+  type = list(string)
 }
 
 variable "vmss-maximum-instances" {
   type = number
 }
+

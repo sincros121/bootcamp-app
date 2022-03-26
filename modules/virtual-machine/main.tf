@@ -10,7 +10,7 @@ resource "azurerm_linux_virtual_machine" "linux-VM" {
   size                            = "Standard_B1s"
   admin_password                  = var.admin-password
   disable_password_authentication = "false"
-  custom_data = var.VM-custom-data
+  custom_data                     = var.VM-custom-data
   source_image_reference {
     offer     = "0001-com-ubuntu-server-focal"
     publisher = "Canonical"
@@ -19,7 +19,7 @@ resource "azurerm_linux_virtual_machine" "linux-VM" {
   }
 
   os_disk {
-    name                 = "web-application-VM-disk-00${count.index + 1 }"
+    name                 = "web-application-VM-disk-00${count.index + 1}"
     caching              = "ReadWrite"
     storage_account_type = "StandardSSD_LRS"
   }

@@ -1,5 +1,5 @@
-output "backend-pool-id" {
-  value = azurerm_lb_backend_address_pool.web-application-backend-pool.id
+output "backend-pool" {
+  value = azurerm_lb_backend_address_pool.web-application-backend-pool
 }
 
 output "inbound-nat-rule-id" {

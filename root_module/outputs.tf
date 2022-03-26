@@ -3,8 +3,11 @@ output "public-ip" {
 }
 
 output "VM-password" {
-  value = module.azure-vault.vm-password
+  value     = module.azure-vault.vm-password
   sensitive = true
 }
+
+
+
 
 

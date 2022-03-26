@@ -49,7 +49,8 @@ resource "azurerm_lb_rule" "lb-rule" {
   backend_port                   = 8080
   frontend_ip_configuration_name = "frontend-IP-configuration"
   disable_outbound_snat          = true
-  probe_id = azurerm_lb_probe.port-8080-hp.id
+  probe_id                       = azurerm_lb_probe.port-8080-hp.id
+  backend_address_pool_ids       = var.backend-address-pool-ids
 }
 
 

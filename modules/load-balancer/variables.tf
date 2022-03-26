@@ -23,3 +23,7 @@ variable "frontend-port-start" {
 variable "frontend-port-end" {
   type = string
 }
+
+variable "backend-address-pool-ids" {
+  type = list(string)
+}

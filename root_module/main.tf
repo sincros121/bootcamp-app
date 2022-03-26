@@ -30,7 +30,7 @@ resource "azurerm_resource_group" "resource-group" {
 
 
 module "network-security-groups" {
-  source           = "../modules/network-security-groups"
+  source = "../modules/network-security-groups"
 
   public-nsg-name  = "public-nsg"
   private-nsg-name = "private-nsg"
@@ -47,7 +47,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 module "subnets" {
-  source    = "../modules/subnets"
+  source = "../modules/subnets"
 
   rg-name   = local.rg-name
   vnet-name = azurerm_virtual_network.vnet.name
@@ -89,28 +89,30 @@ data "template_file" "custom-data-shell-script" {
 
 
 module "front-load-balancer" {
-  source           = "../modules/load-balancer"
+  source = "../modules/load-balancer"
 
-  rg-name          = local.rg-name
-  def-location     = local.def-location
-  public-ip-id     = azurerm_public_ip.load-balancer-public-ip.id
-  public-subnet-id = module.subnets.public-subnet-id
-  frontend-port-start = local.inbound-nat-port-start
-  frontend-port-end = local.inbound-nat-port-start + local.vmss-maximum-instances
+  rg-name                  = local.rg-name
+  def-location             = local.def-location
+  public-ip-id             = azurerm_public_ip.load-balancer-public-ip.id
+  public-subnet-id         = module.subnets.public-subnet-id
+  frontend-port-start      = local.inbound-nat-port-start
+  frontend-port-end        = local.inbound-nat-port-start + local.vmss-maximum-instances
+  backend-address-pool-ids = [module.front-load-balancer.backend-pool.id]
 }
 
 module "application-vmss" {
   source = "../modules/virtual-machine-scale-set"
 
-  location = local.def-location
-  rg-name = local.rg-name
-  VM-username = "ubuntu"
-  admin-password = module.azure-vault.vm-password
-  backend-pool-ids = [module.front-load-balancer.backend-pool-id]
-  inbound-nat-rule-ids = [module.front-load-balancer.inbound-nat-rule-id]
-  public-subnet-id = module.subnets.public-subnet-id
-  VM-custom-data = base64encode(data.template_file.custom-data-shell-script.rendered)
-  vmss-maximum-instances = local.vmss-maximum-instances
+  location                 = local.def-location
+  rg-name                  = local.rg-name
+  VM-username              = "ubuntu"
+  admin-password           = module.azure-vault.vm-password
+  backend-address-pool-ids = [module.front-load-balancer.backend-pool.id]
+  nat-rule-ids             = [module.front-load-balancer.inbound-nat-rule-id]
+  public-subnet-id         = module.subnets.public-subnet-id
+  VM-custom-data           = base64encode(data.template_file.custom-data-shell-script.rendered)
+  vmss-maximum-instances   = local.vmss-maximum-instances
+
   depends_on = [module.front-load-balancer]
 }
 

@@ -26,30 +26,19 @@ resource "azurerm_linux_virtual_machine_scale_set" "web-application-VM-scale-set
   }
 
   network_interface {
-    name    = "vmss-nic"
-    primary = true
+    name                 = "vmss-nic"
+    primary              = true
+    enable_ip_forwarding = true
 
 
     ip_configuration {
-      name      = "scale-set-ip-config"
-      primary   = true
-      subnet_id = var.public-subnet-id
-      #load_balancer_backend_address_pool_ids = var.backend-pool-ids
-      #load_balancer_inbound_nat_rules_ids = var.inbound-nat-rule-ids
+      name                                   = "scale-set-ip-config"
+      primary                                = true
+      subnet_id                              = var.public-subnet-id
+      load_balancer_backend_address_pool_ids = var.backend-address-pool-ids
+      load_balancer_inbound_nat_rules_ids    = var.nat-rule-ids
     }
   }
-}
-
-resource "azurerm_network_interface_backend_address_pool_association" "NIC-to-LB-backend-pool-association" {
-  network_interface_id    = var.NIC-id
-  ip_configuration_name   = "testconfiguration1"
-  backend_address_pool_id = var.backend_address_pool_id
-}
-
-resource "azurerm_network_interface_nat_rule_association" "NIC-to-LB-nat-rule-association" {
-  network_interface_id  = var.NIC-id
-  ip_configuration_name = "testconfiguration1"
-  nat_rule_id           = var.nat
 }
 
 
