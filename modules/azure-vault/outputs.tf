@@ -20,7 +20,8 @@ output "cookie-encrypt-pwd" {
   sensitive = true
 }
 
-output "weight-tacker-PSQL-password" {
+output "weight-tracker-PSQL-password" {
   value     = data.azurerm_key_vault_secret.weight-tacker-PSQL-password.value
   sensitive = true
 }
+

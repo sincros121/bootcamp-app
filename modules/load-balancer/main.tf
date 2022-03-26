@@ -64,3 +64,5 @@ resource "azurerm_lb_nat_pool" "lb-nat-pool" {
   backend_port                   = 22
   frontend_ip_configuration_name = "frontend-IP-configuration"
 }
+
+

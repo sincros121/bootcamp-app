@@ -5,3 +5,4 @@ output "backend-pool" {
 output "inbound-nat-rule-id" {
   value = azurerm_lb_nat_pool.lb-nat-pool.id
 }
+
