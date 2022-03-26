@@ -30,30 +30,32 @@ variable "azure-vault-rg-name" {
   description = "The vault resource group name to use for this project if enabled"
 }
 
-#-----------------------------------------------------------------------------------
-# Below are variables of sensitive data that will be used with a custom .tfvars file
-#-----------------------------------------------------------------------------------
 variable "okta-API-token" {
   default = null
   type = string
+  description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
 }
 
 variable "PGPASSWORD" {
   default = null
   type = string
+  description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
 }
 
 variable "COOKIE_ENCRYPT_PWD" {
   default = null
   type = string
+  description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
 }
 
 variable "OKTA_CLIENT_SECRET" {
   default = null
   type = string
+  description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
 }
 
 variable "admin-password" {
   default = null
   type = string
+  description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
 }
