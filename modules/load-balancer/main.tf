@@ -11,7 +11,6 @@ resource "azurerm_lb" "front-load-balancer" {
   frontend_ip_configuration {
     name                 = "frontend-IP-configuration"
     public_ip_address_id = var.public-ip-id
-    #    subnet_id            = var.public-subnet-id
 
   }
 }

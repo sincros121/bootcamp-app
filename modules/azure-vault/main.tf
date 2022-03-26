@@ -1,7 +1,9 @@
 
+
 locals {
   key-vault-id = data.azurerm_key_vault.azure-vault.id
 }
+
 
 
 #Fetching all necessary passwords and secrets for this application and it's infrastructure from azure vault.
