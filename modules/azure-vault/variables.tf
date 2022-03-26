@@ -1,13 +1,11 @@
 
 
 variable "azure-vault-name" {
-  type = string
+  type        = string
+  description = "Azure vault name"
 }
 
 variable "azure-vault-resource-group" {
-  type = string
+  type        = string
+  description = "Azure vault resource group"
 }
-
-#variable "azure-vault-enabled" {
-#  type = bool
-#}

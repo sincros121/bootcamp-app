@@ -1,7 +1,22 @@
 
+#------------------------------
+# Creating VM network interface
+#------------------------------
+resource "azurerm_network_interface" "VM-NIC" {
+  location            = var.location
+  name                = "VM-NIC-name-00${count.index}"
+  resource_group_name = var.rg-name
+  ip_configuration {
+    name                          = "VM-NIC-ip-config-00${count.index}"
+    subnet_id                     = var.public-subnet-id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
 
+#-------------------------------
+# Creating linux virtual machine
+#-------------------------------
 resource "azurerm_linux_virtual_machine" "linux-VM" {
-  count                           = var.VM-amount
   admin_username                  = var.VM-username
   location                        = var.location
   name                            = "${var.VM-name}-00${count.index + 1}"

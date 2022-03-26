@@ -151,7 +151,7 @@ module "weight-tracker-postgresql-db" {
 
   location               = local.def-location
   rg-name                = local.rg-name
-  postgresql-db-password = module.azure-vault[0].weight-tracker-PSQL-password
+  postgresql-db-password = var.is-azure-vault-enabled ? module.azure-vault[0].weight-tracker-PSQL-password : var.postgresql-db-password
   private-subnet-id      = module.subnets.private-subnet-id
   vnet-id                = azurerm_virtual_network.vnet.id
 

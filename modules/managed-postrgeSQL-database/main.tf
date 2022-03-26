@@ -1,11 +1,16 @@
 
 
-
+#---------------------------------------------------------------------------------------
+# Creating private DNS zone in order to be able to reach the private postgreSQL database
+#---------------------------------------------------------------------------------------
 resource "azurerm_private_dns_zone" "weight-tracker-postgresql-db-private-dns-zone" {
   name                = "weight-tracker-db.postgres.database.azure.com"
   resource_group_name = var.rg-name
 }
 
+#--------------------------------------------------------------------
+# Creates the resource group that will be used throughout the project
+#--------------------------------------------------------------------
 resource "azurerm_private_dns_zone_virtual_network_link" "postgresql-dns-to-vnet-link" {
   name                  = "postgresql-dns-to-vnet-link"
   resource_group_name   = var.rg-name
@@ -13,6 +18,9 @@ resource "azurerm_private_dns_zone_virtual_network_link" "postgresql-dns-to-vnet
   virtual_network_id    = var.vnet-id
 }
 
+#-----------------------------------------------------------------------------------------------------------------------
+# Creating the managed PostgreSQL database server, this database depends on the private DNS zone being created before it
+#-----------------------------------------------------------------------------------------------------------------------
 resource "azurerm_postgresql_flexible_server" "weight-tracker-postgresql-db" {
   name                   = "weight-tracker-postgresql-db"
   resource_group_name    = var.rg-name
@@ -33,7 +41,9 @@ resource "azurerm_postgresql_flexible_server" "weight-tracker-postgresql-db" {
 }
 
 
-
+#-------------------------------------------------------------------------------------------------------
+# Creating the configuration for the server, disabling secure transport so no certificate will be needed
+#-------------------------------------------------------------------------------------------------------
 resource "azurerm_postgresql_flexible_server_configuration" "psql-set-certification-off" {
   name      = "require_secure_transport"
   server_id = azurerm_postgresql_flexible_server.weight-tracker-postgresql-db.id

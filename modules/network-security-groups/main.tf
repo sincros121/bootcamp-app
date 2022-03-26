@@ -1,10 +1,17 @@
 
-
+#------------------------------------------------------------------------------------------------------
+# Fetching the users public IP address to automatically add it to web applications VMs SSH access rule,
+# If not possible to fetch or different behaviour is required please change the "source_address_prefix"
+# in the first security rule below.
+#------------------------------------------------------------------------------------------------------
 data "http" "user-IP" {
   url = "https://ifconfig.me"
 }
 
-
+#------------------------------------------------------------------------------------
+# Creating security group for the public subnet, it will allow port 22 from users IP,
+# tcp port 8080 from all sources, and deny all else
+#------------------------------------------------------------------------------------
 resource "azurerm_network_security_group" "public-nsg" {
   name                = var.public-nsg-name
   location            = var.location
@@ -59,6 +66,11 @@ resource "azurerm_network_security_group" "public-nsg" {
   }
 }
 
+
+#-----------------------------------------------------------------------------------------------------
+# Creating security group for the private subnet, it will allow port 5432 only from the public subnet,
+# allow SSH only from the public subnet, and deny all else
+#-----------------------------------------------------------------------------------------------------
 resource "azurerm_network_security_group" "private-nsg" {
   name                = var.private-nsg-name
   location            = var.location

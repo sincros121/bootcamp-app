@@ -1,6 +1,9 @@
 
 
-
+#-------------------------------------------------------------------------------------------------------------------
+# Creating the linux virtual machine scale set amd it's network interface that will be used for the web application,
+# assigning it the public subnet and adding it the LB backend pool
+#-------------------------------------------------------------------------------------------------------------------
 resource "azurerm_linux_virtual_machine_scale_set" "web-application-VM-scale-set" {
   name                            = "web-application-VM-scale-set"
   resource_group_name             = var.rg-name
@@ -42,6 +45,10 @@ resource "azurerm_linux_virtual_machine_scale_set" "web-application-VM-scale-set
 }
 
 
+#-----------------------------------------------------------------------------------------------------------------------
+# Creating the scaling configuration used for the VMSS, starting and minimum amount of virtual machines is set to 3
+# The maximum amount is passed as a variable, machines horizontally scale in and out based on CPU usage.
+#-----------------------------------------------------------------------------------------------------------------------
 resource "azurerm_monitor_autoscale_setting" "vmss-auto-scaling-setting" {
   name                = "vmss-auto-scaling-setting"
   resource_group_name = var.rg-name

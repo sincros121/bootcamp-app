@@ -59,3 +59,9 @@ variable "admin-password" {
   type = string
   description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
 }
+
+variable "postgresql-db-password" {
+  default = null
+  type = string
+  description = "Variable of sensitive data that will be used with a custom .tfvars file instead of relying on vault"
+}

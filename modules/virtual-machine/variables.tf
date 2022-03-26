@@ -35,9 +35,14 @@ variable "admin-password" {
 
 variable "VM-custom-data" {
   type        = string
-  description = ""
+  description = "Custom data to run on the VM at the provisioning state"
 }
 
+
+variable "public-subnet-id" {
+  type = string
+  description = "Id of the public subnet"
+}
 
 
 
