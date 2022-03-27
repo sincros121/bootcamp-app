@@ -28,8 +28,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_azure-vault-name"></a> [azure-vault-name](#input\_azure-vault-name) | n/a | `string` | n/a | yes |
-| <a name="input_azure-vault-resource-group"></a> [azure-vault-resource-group](#input\_azure-vault-resource-group) | n/a | `string` | n/a | yes |
+| <a name="input_azure-vault-name"></a> [azure-vault-name](#input\_azure-vault-name) | Azure vault name | `string` | n/a | yes |
+| <a name="input_azure-vault-resource-group"></a> [azure-vault-resource-group](#input\_azure-vault-resource-group) | Azure vault resource group | `string` | n/a | yes |
 
 ## Outputs
 

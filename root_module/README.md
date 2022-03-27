@@ -53,6 +53,6 @@
 
 | Name | Description |
 |------|-------------|
-| <a name="output_VM-password"></a> [VM-password](#output\_VM-password) | n/a |
+| <a name="output_VM-password"></a> [VM-password](#output\_VM-password) | Password of the virtual machines. |
 | <a name="output_public-ip"></a> [public-ip](#output\_public-ip) | n/a |
 <!-- END_TF_DOCS -->
