@@ -103,7 +103,7 @@ data "template_file" "custom-data-shell-script" {
     COOKIE_ENCRYPT_PWD = var.is-azure-vault-enabled ? module.azure-vault[0].cookie-encrypt-pwd : var.COOKIE_ENCRYPT_PWD
     OKTA_CLIENT_SECRET = var.is-azure-vault-enabled ? module.azure-vault[0].okta-client-secret : var.OKTA_CLIENT_SECRET
   }
-
+  depends_on = [module.weight-tracker-postgresql-db, azurerm_public_ip.load-balancer-public-ip]
 }
 
 #--------------------------------------------------------------------------------------------------------------

@@ -21,8 +21,6 @@ provider "azurerm" {
   features {}
 }
 
-provider "local" {}
-
 provider "template" {}
 
 provider "http" {}
