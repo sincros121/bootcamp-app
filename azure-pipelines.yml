@@ -6,41 +6,45 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+pool: 'self-hosted-stas'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'
-  displayName: 'Install Node.js'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '14.x'
+#   displayName: 'Install Node.js'
 
 
-- script: |
-    echo "
-    PORT=8080
-    HOST=0.0.0.0
+# - script: |
+#     echo "
+#     PORT=8080
+#     HOST=0.0.0.0
 
-    #postgres
-    PGHOST=${PGHOST}
-    PGUSERNAME=postgres
-    PGDATABASE=postgres
-    PGPASSWORD=${PGPASSWORD}
-    PGPORT=5432
+#     #postgres
+#     PGHOST=${PGHOST}
+#     PGUSERNAME=postgres
+#     PGDATABASE=postgres
+#     PGPASSWORD=${PGPASSWORD}
+#     PGPORT=5432
 
-    HOST_URL=http://${HOST_URL_IP}:8080
-    COOKIE_ENCRYPT_PWD=${COOKIE_ENCRYPT_PWD}
-    NODE_ENV=development
+#     HOST_URL=http://${HOST_URL_IP}:8080
+#     COOKIE_ENCRYPT_PWD=${COOKIE_ENCRYPT_PWD}
+#     NODE_ENV=development
 
-    # Okta configuration
-    OKTA_ORG_URL=https://dev-77800982.okta.com
-    OKTA_CLIENT_ID=${OKTA-client-ID}
-    OKTA_CLIENT_SECRET=${OKTA_CLIENT_SECRET}" | cat > .env
-  displayName: '.Env creation'
+#     # Okta configuration
+#     OKTA_ORG_URL=https://dev-77800982.okta.com
+#     OKTA_CLIENT_ID=${OKTA-client-ID}
+#     OKTA_CLIENT_SECRET=${OKTA_CLIENT_SECRET}" | cat > .env
+#   displayName: '.Env creation'
 
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+# - script: |
+#     npm install
+#     npm run build
+#   displayName: 'npm install and build'
 
+- script: echo "hello"
+
+- script: ls -a
+
+- script: pwd
