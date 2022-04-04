@@ -3,12 +3,25 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
+resources:
+  repositories: 
+  - repository: Weight-tracker-ansible-pipeline
+    type: github
+    name: sincros121/Weight-tracker-ansible-pipeline
+    ref: main
+    endpoint: sincros121
+
+
 trigger:
 - master
 
 pool: 'self-hosted-stas'
 
 steps:
+
+- checkout: self
+- checkout: Weight-tracker-ansible-pipeline
+
 # - task: NodeTool@0
 #   inputs:
 #     versionSpec: '14.x'
