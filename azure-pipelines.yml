@@ -17,47 +17,132 @@ trigger:
 
 pool: 'self-hosted-stas'
 
-steps:
+stages:
+- stage: CI
+  displayName: CI
 
-- checkout: self
-- checkout: Weight-tracker-ansible-pipeline
+  jobs:
+  - job: Build
+    displayName: Build
 
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '14.x'
-#   displayName: 'Install Node.js'
-
-
-# - script: |
-#     echo "
-#     PORT=8080
-#     HOST=0.0.0.0
-
-#     #postgres
-#     PGHOST=${PGHOST}
-#     PGUSERNAME=postgres
-#     PGDATABASE=postgres
-#     PGPASSWORD=${PGPASSWORD}
-#     PGPORT=5432
-
-#     HOST_URL=http://${HOST_URL_IP}:8080
-#     COOKIE_ENCRYPT_PWD=${COOKIE_ENCRYPT_PWD}
-#     NODE_ENV=development
-
-#     # Okta configuration
-#     OKTA_ORG_URL=https://dev-77800982.okta.com
-#     OKTA_CLIENT_ID=${OKTA-client-ID}
-#     OKTA_CLIENT_SECRET=${OKTA_CLIENT_SECRET}" | cat > .env
-#   displayName: '.Env creation'
+    steps:
+    - checkout: self
+    - checkout: Weight-tracker-ansible-pipeline
 
 
-# - script: |
-#     npm install
-#     npm run build
-#   displayName: 'npm install and build'
 
-- script: echo "hello"
+    - script: echo "hello"
 
-- script: ls -a
+    - script: ls -a
 
-- script: pwd
+    - script: pwd
+  
+
+    - task: Npm@0
+      displayName: 'npm install and build'
+      inputs:
+        cwd: 'bootcamp-app'
+        command: 'install'
+        
+    
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/bootcamp-app'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: drop
+          
+
+
+# - stage: CD_stage
+#   displayName: Stage
+  
+#   variables: 
+#   - group: vault secrets - stage
+
+#   jobs:
+#   - job: Build
+#     displayName: Build
+
+        # - task: NodeTool@0
+    #   inputs:
+    #     versionSpec: '14.x'
+    #   displayName: 'Install Node.js'
+
+
+    # - script: |
+    #     echo "
+    #     PORT=8080
+    #     HOST=0.0.0.0
+
+    #     #postgres
+    #     PGHOST=${PGHOST}
+    #     PGUSERNAME=postgres
+    #     PGDATABASE=postgres
+    #     PGPASSWORD=${PGPASSWORD}
+    #     PGPORT=5432
+
+    #     HOST_URL=http://${HOST_URL_IP}:8080
+    #     COOKIE_ENCRYPT_PWD=${COOKIE_ENCRYPT_PWD}
+    #     NODE_ENV=development
+
+    #     # Okta configuration
+    #     OKTA_ORG_URL=https://dev-77800982.okta.com
+    #     OKTA_CLIENT_ID=${OKTA-client-ID}
+    #     OKTA_CLIENT_SECRET=${OKTA_CLIENT_SECRET}" | cat > .env
+    #   displayName: '.Env creation'
+
+
+
+
+
+
+# - stage: CD_stage
+#   displayName: Stage
+  
+#   variables: 
+#   - group: vault secrets - prod
+
+#   jobs:
+#   - job: Build
+#     displayName: Build
+    
+        # - task: NodeTool@0
+    #   inputs:
+    #     versionSpec: '14.x'
+    #   displayName: 'Install Node.js'
+
+
+    # - script: |
+    #     echo "
+    #     PORT=8080
+    #     HOST=0.0.0.0
+
+    #     #postgres
+    #     PGHOST=${PGHOST}
+    #     PGUSERNAME=postgres
+    #     PGDATABASE=postgres
+    #     PGPASSWORD=${PGPASSWORD}
+    #     PGPORT=5432
+
+    #     HOST_URL=http://${HOST_URL_IP}:8080
+    #     COOKIE_ENCRYPT_PWD=${COOKIE_ENCRYPT_PWD}
+    #     NODE_ENV=development
+
+    #     # Okta configuration
+    #     OKTA_ORG_URL=https://dev-77800982.okta.com
+    #     OKTA_CLIENT_ID=${OKTA-client-ID}
+    #     OKTA_CLIENT_SECRET=${OKTA_CLIENT_SECRET}" | cat > .env
+    #   displayName: '.Env creation'
+
+
+    # - script: |
+    #     npm install
+    #     npm run build
+    #   displayName: 'npm install and build'
