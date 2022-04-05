@@ -29,8 +29,6 @@ stages:
     - checkout: self
     - checkout: Weight-tracker-ansible-pipeline
 
-
-
     - script: echo "hello"
 
     - script: ls -a
