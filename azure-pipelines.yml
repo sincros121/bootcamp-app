@@ -51,6 +51,7 @@ stages:
           docs
           .gitignore
           LICENSE
+          azure-pipelines.yml
           
     - task: ArchiveFiles@2
       displayName: 'Archive files'
