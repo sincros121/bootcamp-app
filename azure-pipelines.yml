@@ -99,10 +99,10 @@ stages:
   - group: vault secrets - stage
 
   jobs:
-  - job: Build_stage
-  - deployment: Build
-    displayName: Build
-    dependsOn: CI
+  - job: deploy_stage
+  - deployment: deploy
+    displayName: Deploy stage
+    dependsOn: Build
     environment: stage
     strategy:
       rolling:
