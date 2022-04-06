@@ -63,7 +63,7 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/bootcamp-app'
         includeRootFolder: false
         archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)mmm/$(Build.BuildId).zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
     - task: PublishPipelineArtifact@1
@@ -84,7 +84,7 @@ stages:
     - task: UniversalPackages@0
       inputs:
         command: 'publish'
-        publishDirectory: '$(Build.ArtifactStagingDirectory)'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
         vstsFeedPackagePublish: 'weightTracker'
