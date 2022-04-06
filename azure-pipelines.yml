@@ -25,6 +25,9 @@ pool: 'self-hosted-stas'
 stages:
 - stage: CI
   displayName: CI
+  
+  variables:
+    - group: vault secrets - stage
 
   jobs:
   - job: Build
@@ -75,7 +78,7 @@ stages:
         ansibleInterface: 'agentMachine'
         playbookPathOnAgentMachine: 'Weight-tracker-ansible-pipeline/add-stage-to-pipeline.yaml'
         inventoriesAgentMachine: 'noInventory'
-        args: '-e "env=stage admin_password=4568"'
+        args: '-e "env=stage admin_password=$(VM-password)"'
 
 
 # - stage: CD_stage
