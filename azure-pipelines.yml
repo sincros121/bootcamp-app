@@ -102,7 +102,6 @@ stages:
   - job: deploy_stage
   - deployment: deploy
     displayName: Deploy stage
-    dependsOn: Build
     environment: stage
     strategy:
       rolling:
