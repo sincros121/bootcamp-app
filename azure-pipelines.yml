@@ -66,12 +66,12 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(Pipeline.Workspace)'
-        artifactName: 'drop'
-        artifactType: 'pipeline'
-        parallel: false
+    # - task: PublishPipelineArtifact@1
+    #   inputs:
+    #     targetPath: '$(Pipeline.Workspace)'
+    #     artifactName: 'drop'
+    #     artifactType: 'pipeline'
+    #     parallel: false
 
     # - task: Ansible@0
     #   displayName: Add agents to all machines
@@ -84,10 +84,10 @@ stages:
     - task: UniversalPackages@0
       inputs:
         command: 'publish'
-        publishDirectory: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)'
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
-        vstsFeedPackagePublish: 'weightTracker'
+        vstsFeedPackagePublish: 'weight_tracker'
         versionOption: 'patch'
 
 
