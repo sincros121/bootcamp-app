@@ -39,7 +39,7 @@ stages:
         cwd: 'bootcamp-app'
         command: 'install'
 
-    - script: export ANSIBLE_HOST_KEY_CHECKING=False ""
+    # - script: export ANSIBLE_HOST_KEY_CHECKING=False ""
       
 
     - task: ArchiveFiles@2
