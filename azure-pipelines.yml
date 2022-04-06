@@ -77,7 +77,7 @@ stages:
       displayName: Add agents to all machines
       inputs:
         ansibleInterface: 'agentMachine'
-        playbookPathOnAgentMachine: 'Weight-tracker-ansible-pipeline/add-stage-to-pipeline.yaml'
+        playbookPathOnAgentMachine: 'add-stage-to-pipeline.yaml'
         inventoriesAgentMachine: 'noInventory'
         args: '-e "env=stage admin_password=$(VM-password)"'
 
