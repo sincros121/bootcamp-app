@@ -99,6 +99,7 @@ stages:
   - group: vault secrets - stage
 
   jobs:
+  - job: Build_stage
   - deployment: Build
     displayName: Build
     dependsOn: CI
