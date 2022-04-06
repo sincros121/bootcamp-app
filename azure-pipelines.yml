@@ -68,6 +68,8 @@ stages:
         artifactName: 'drop'
         artifactType: 'pipeline'
         parallel: false
+
+    script    
         
 
 
