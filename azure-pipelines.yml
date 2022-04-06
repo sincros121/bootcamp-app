@@ -12,6 +12,11 @@ resources:
     endpoint: sincros121
 
 
+        # - task: NodeTool@0
+    #   inputs:
+    #     versionSpec: '14.x'
+    #   displayName: 'Install Node.js'
+
 trigger:
 - master
 
@@ -28,21 +33,14 @@ stages:
     steps:
     - checkout: self
     - checkout: Weight-tracker-ansible-pipeline
-
-    - script: echo "hello"
-
-    - script: ls -a
-
-    - script: pwd
-  
-
     - task: Npm@0
-      displayName: 'npm install and build'
+      displayName: 'npm install'
       inputs:
         cwd: 'bootcamp-app'
         command: 'install'
-        
-    
+
+    - script: export ANSIBLE_HOST_KEY_CHECKING=False ""
+      
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -72,10 +70,6 @@ stages:
 #   - job: Build
 #     displayName: Build
 
-        # - task: NodeTool@0
-    #   inputs:
-    #     versionSpec: '14.x'
-    #   displayName: 'Install Node.js'
 
 
     # - script: |
