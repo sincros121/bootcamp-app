@@ -34,7 +34,7 @@ stages:
     displayName: Build
 
     steps:
-    - checkout: self
+    # - checkout: self
     - checkout: Weight-tracker-ansible-pipeline
 
     # - task: Npm@0
