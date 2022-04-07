@@ -101,6 +101,7 @@ stages:
           - checkout: Weight-tracker-ansible-pipeline
           
           - task: UniversalPackages@0
+            displayName: Download latest artifacts
             inputs:
               command: 'download'
               downloadDirectory: '$(System.DefaultWorkingDirectory)'
