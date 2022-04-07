@@ -33,6 +33,7 @@ stages:
 
     steps:
     - checkout: self
+      displayName: Clone latest web-application repo
 
     - task: Npm@0
       displayName: 'npm install'
@@ -99,6 +100,7 @@ stages:
         deploy:
           steps:
           - checkout: Weight-tracker-ansible-pipeline
+            displayName: Clone latest ansible repo
           
           - task: UniversalPackages@0
             displayName: Download latest artifacts
