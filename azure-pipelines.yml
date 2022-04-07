@@ -99,9 +99,8 @@ stages:
   - group: vault secrets - stage
 
   jobs:
-  - job: deploy_stage
+  - job: deployStage
   - deployment: deploy
-    displayName: Deploy stage
     environment: stage
     strategy:
       runOnce:
