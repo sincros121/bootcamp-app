@@ -92,21 +92,21 @@ stages:
 
 
 
-- stage: CD_stage
-  displayName: Stage
+# - stage: CD_stage
+#   displayName: Stage
   
-  variables: 
-  - group: vault secrets - stage
+#   variables: 
+#   - group: vault secrets - stage
 
-  jobs:
-  - job: deploy_stage
-  - deployment: deploy
-    displayName: Deploy stage
-    environment: stage
-    strategy:
-      runOnce:
-        deploy:
-          steps:
+#   jobs:
+#   - job: deploy_stage
+#   - deployment: deploy
+#     displayName: Deploy stage
+#     environment: stage
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
           # - task: UniversalPackages@0
           #   inputs:
           #     command: 'download'
