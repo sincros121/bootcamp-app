@@ -118,7 +118,7 @@ stages:
           - task: ExtractFiles@1
             inputs:
               archiveFilePatterns: 'bootcamp-app.zip'
-              destinationFolder: '$(System.DefaultWorkingDirectory)'
+              destinationFolder: '$(System.DefaultWorkingDirectory)/bootcamp-app'
               cleanDestinationFolder: false
               overwriteExistingFiles: true
               
