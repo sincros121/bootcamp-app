@@ -135,7 +135,9 @@ stages:
             displayName: Env file creation
             
 
-          - script: echo "$(OKTA-client-ID-stage)"
+          - script: |
+              echo "$(OKTA-client-ID-stage)"
+              echo "$(okta-client-secret-stage)"
 
           # - task: Ansible@0
           #   displayName: Deploy using ansible
