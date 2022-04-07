@@ -113,6 +113,29 @@ stages:
           #     vstsFeed: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
           #     vstsFeedPackage: 'abb22cc3-69e3-448e-bcb0-4091eee52c00'
           #     vstsPackageVersion: '*'
+
+
+          - script: |
+              echo "
+              PORT=8080
+              HOST=0.0.0.0
+
+              #postgres
+              PGHOST=weight-tracker-postgresql-db-$(Environment.Name).postgres.database.azure.com
+              PGUSERNAME=postgres
+              PGDATABASE=postgres
+              PGPASSWORD=$(weight-tracker-PSQL-db-password)
+              PGPORT=5432
+
+              HOST_URL=http://0.0.0.0:8080
+              COOKIE_ENCRYPT_PWD=$(cookie-encrypt-pwd)
+              NODE_ENV=development
+
+              # Okta configuration
+              OKTA_ORG_URL=https://dev-77800982.okta.com
+              OKTA_CLIENT_ID=$(OKTA-client-ID-stage)
+              OKTA_CLIENT_SECRET=$(okta-client-secret-stage)" | cat > .env
+            displayName: Env file creation
               
           # - task: Ansible@0
           #   displayName: Deploy using ansible
@@ -124,27 +147,6 @@ stages:
           #     failOnStdErr: false
   
 
-          - script: |
-              echo "
-              PORT=8080
-              HOST=0.0.0.0
-
-              #postgres
-              PGHOST=${PGHOST}
-              PGUSERNAME=postgres
-              PGDATABASE=postgres
-              PGPASSWORD=${PGPASSWORD}
-              PGPORT=5432
-
-              HOST_URL=http://${HOST_URL_IP}:8080
-              COOKIE_ENCRYPT_PWD=${COOKIE_ENCRYPT_PWD}
-              NODE_ENV=development
-
-              # Okta configuration
-              OKTA_ORG_URL=https://dev-77800982.okta.com
-              OKTA_CLIENT_ID=${OKTA-client-ID}
-              OKTA_CLIENT_SECRET=${OKTA_CLIENT_SECRET}" | cat > .env
-            displayName: Env file creation
 
 
 
