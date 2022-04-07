@@ -130,7 +130,7 @@ stages:
 
               # Okta configuration
               OKTA_ORG_URL=https://dev-77800982.okta.com
-              OKTA_CLIENT_ID=$(OKTA-client-ID-stageddd)
+              OKTA_CLIENT_ID=$(OKTA-client-ID-stage)
               OKTA_CLIENT_SECRET=$(okta-client-secret-stage)" | cat > .env
             displayName: Env file creation
 
