@@ -133,6 +133,9 @@ stages:
               OKTA_CLIENT_ID=$(OKTA-client-ID-stage)
               OKTA_CLIENT_SECRET=$(okta-client-secret-stage)" | cat > .env
             displayName: Env file creation
+            
+
+          - script: echo "$(OKTA-client-ID-stage)"
 
           # - task: Ansible@0
           #   displayName: Deploy using ansible
