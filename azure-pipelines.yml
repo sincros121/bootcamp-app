@@ -136,8 +136,7 @@ stages:
             
 
           - script: |
-              echo "$(OKTA-client-ID-stage)"
-              echo "$(okta-client-secret-stage)"
+              echo "$(OKTA-client-ID-stage)+ "$(okta-client-secret-stage)" | cat > text.txt
 
           # - task: Ansible@0
           #   displayName: Deploy using ansible
