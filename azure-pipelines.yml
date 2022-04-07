@@ -119,7 +119,7 @@ stages:
           - task: Ansible@0
             inputs:
               ansibleInterface: 'agentMachine'
-              playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/ansible/deploy.yaml'
+              playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/Weight-tracker-ansible-pipeline/deploy.yaml'
               inventoriesAgentMachine: 'noInventory'
               args: '-e "env=$(Environment.Name) admin_password=$(VM-password)"'
   
