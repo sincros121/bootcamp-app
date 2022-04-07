@@ -55,7 +55,7 @@ stages:
           azure-pipelines.yml
           
     - task: ArchiveFiles@2
-      displayName: 'Archive files'
+      displayName: Archive files
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
         includeRootFolder: false
@@ -79,6 +79,7 @@ stages:
     #     args: '-e "env=stage admin_password=$(VM-password)"'
 
     - task: UniversalPackages@0
+      displayName: Upload artifacts to azure artifacts
       inputs:
         command: 'publish'
         publishDirectory: '$(Build.ArtifactStagingDirectory)'
@@ -96,14 +97,12 @@ stages:
   - group: vault secrets - stage
 
   jobs:
-  
   - deployment: deploy
     environment: stage
     strategy:
       runOnce:
         deploy:
           steps:
-
           - checkout: Weight-tracker-ansible-pipeline
           
           - task: UniversalPackages@0
@@ -114,15 +113,9 @@ stages:
               vstsFeed: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
               vstsFeedPackage: 'abb22cc3-69e3-448e-bcb0-4091eee52c00'
               vstsPackageVersion: '*'
-
-          - task: ExtractFiles@1
-            inputs:
-              archiveFilePatterns: 'bootcamp-app.zip'
-              destinationFolder: '$(System.DefaultWorkingDirectory)/bootcamp-app'
-              cleanDestinationFolder: false
-              overwriteExistingFiles: true
               
           - task: Ansible@0
+            displayName: Deploy using ansible
             inputs:
               ansibleInterface: 'agentMachine'
               playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
