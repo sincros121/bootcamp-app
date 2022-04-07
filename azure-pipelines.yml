@@ -137,14 +137,14 @@ stages:
               OKTA_CLIENT_SECRET=$(okta-client-secret-stage)" | cat > .env
             displayName: Env file creation
               
-          # - task: Ansible@0
-          #   displayName: Deploy using ansible
-          #   inputs:
-          #     ansibleInterface: 'agentMachine'
-          #     playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
-          #     inventoriesAgentMachine: 'noInventory'
-          #     args: '-e "env=$(Environment.Name) admin_password=$(VM-password)"'
-          #     failOnStdErr: false
+          - task: Ansible@0
+            displayName: Deploy using ansible
+            inputs:
+              ansibleInterface: 'agentMachine'
+              playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
+              inventoriesAgentMachine: 'noInventory'
+              args: '-e "env=$(Environment.Name) admin_password=$(VM-password)"'
+              failOnStdErr: false
   
 
 
