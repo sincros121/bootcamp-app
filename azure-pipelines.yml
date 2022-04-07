@@ -63,20 +63,15 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/bootcamp-app.zip
         replaceExistingArchive: true
 
-    # - task: PublishPipelineArtifact@1
-    #   inputs:
-    #     targetPath: '$(Pipeline.Workspace)'
-    #     artifactName: 'drop'
-    #     artifactType: 'pipeline'
-    #     parallel: false
+    - task: PublishPipelineArtifact@1
+      displayName: Publish artifacts
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifactName: 'drop'
+        artifactType: 'pipeline'
+        parallel: false
+      
 
-    # - task: Ansible@0
-    #   displayName: Add agents to all machines
-    #   inputs:
-    #     ansibleInterface: 'agentMachine'
-    #     playbookPathOnAgentMachine: 'add-stage-to-pipeline.yaml'
-    #     inventoriesAgentMachine: 'noInventory'
-    #     args: '-e "env=stage admin_password=$(VM-password)"'
 
     - task: UniversalPackages@0
       displayName: Upload artifacts to azure artifacts
@@ -105,15 +100,14 @@ stages:
           steps:
           - checkout: Weight-tracker-ansible-pipeline
           
-          # - task: UniversalPackages@0
-          #   inputs:
-          #     command: 'download'
-          #     downloadDirectory: '$(System.DefaultWorkingDirectory)'
-          #     feedsToUse: 'internal'
-          #     vstsFeed: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
-          #     vstsFeedPackage: 'abb22cc3-69e3-448e-bcb0-4091eee52c00'
-          #     vstsPackageVersion: '*'
-
+          - task: UniversalPackages@0
+            inputs:
+              command: 'download'
+              downloadDirectory: '$(System.DefaultWorkingDirectory)'
+              feedsToUse: 'internal'
+              vstsFeed: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
+              vstsFeedPackage: 'abb22cc3-69e3-448e-bcb0-4091eee52c00'
+              vstsPackageVersion: '*'
 
           - script: |
               echo "
@@ -136,7 +130,7 @@ stages:
               OKTA_CLIENT_ID=$(OKTA-client-ID-stage)
               OKTA_CLIENT_SECRET=$(okta-client-secret-stage)" | cat > .env
             displayName: Env file creation
-              
+            
           - task: Ansible@0
             displayName: Deploy using ansible
             inputs:
