@@ -99,7 +99,6 @@ stages:
   - group: vault secrets - stage
 
   jobs:
-  - job: deployStage
   - deployment: deploy
     environment: stage
     strategy:
