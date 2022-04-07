@@ -99,18 +99,18 @@ stages:
       runOnce:
         deploy:
           steps:
-          - checkout: Weight-tracker-ansible-pipeline
-            displayName: Clone latest ansible repo
+          # - checkout: Weight-tracker-ansible-pipeline
+          #   displayName: Clone latest ansible repo
           
-          - task: UniversalPackages@0
-            displayName: Download latest artifacts
-            inputs:
-              command: 'download'
-              downloadDirectory: '$(System.DefaultWorkingDirectory)'
-              feedsToUse: 'internal'
-              vstsFeed: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
-              vstsFeedPackage: 'abb22cc3-69e3-448e-bcb0-4091eee52c00'
-              vstsPackageVersion: '*'
+          # - task: UniversalPackages@0
+          #   displayName: Download latest artifacts
+          #   inputs:
+          #     command: 'download'
+          #     downloadDirectory: '$(System.DefaultWorkingDirectory)'
+          #     feedsToUse: 'internal'
+          #     vstsFeed: '4d568cd9-3258-4c66-8828-30f40b885ad4/fa3b70db-aad3-42de-a3b2-a6d319553542'
+          #     vstsFeedPackage: 'abb22cc3-69e3-448e-bcb0-4091eee52c00'
+          #     vstsPackageVersion: '*'
 
           - script: |
               echo "
