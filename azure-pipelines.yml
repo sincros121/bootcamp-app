@@ -26,8 +26,6 @@ stages:
 - stage: CI
   displayName: CI
   
-  variables:
-    - group: vault secrets - stage
 
   jobs:
   - job: Build
@@ -35,7 +33,6 @@ stages:
 
     steps:
     - checkout: self
-    - checkout: Weight-tracker-ansible-pipeline
 
     - task: Npm@0
       displayName: 'npm install'
@@ -99,12 +96,16 @@ stages:
   - group: vault secrets - stage
 
   jobs:
+  
   - deployment: deploy
     environment: stage
     strategy:
       runOnce:
         deploy:
           steps:
+
+          - checkout: Weight-tracker-ansible-pipeline
+          
           - task: UniversalPackages@0
             inputs:
               command: 'download'
