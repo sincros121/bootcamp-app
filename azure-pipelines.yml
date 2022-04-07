@@ -37,7 +37,7 @@ stages:
     - task: Npm@0
       displayName: 'npm install'
       inputs:
-        cwd: 'bootcamp-app'
+        cwd: '$(System.DefaultWorkingDirectory)'
         command: 'install'
 
     # - script: export ANSIBLE_HOST_KEY_CHECKING=False ""
