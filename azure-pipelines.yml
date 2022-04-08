@@ -20,7 +20,7 @@ resources:
     #     - master
 
 trigger: 
-- master
+- self
 
 pool: 'self-hosted-stas'
 
