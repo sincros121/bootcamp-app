@@ -132,20 +132,20 @@ stages:
             displayName: Crate .env file
 
 
-          - task: Ansible@0
-            displayName: Deploy using ansible
-            inputs:
-              ansibleInterface: 'agentMachine'
-              playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
-              inventoriesAgentMachine: 'noInventory'
-              args: '-e "env=$(Environment.Name) admin_password=$(VM-password)"'
-              failOnStdErr: false
+          # - task: Ansible@0
+          #   displayName: Deploy using ansible
+          #   inputs:
+          #     ansibleInterface: 'agentMachine'
+          #     playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
+          #     inventoriesAgentMachine: 'noInventory'
+          #     args: '-e "env=$(Environment.Name) admin_password=$(VM-password)"'
+          #     failOnStdErr: false
 
-          - task: DeleteFiles@1
-            displayName: Delete .env file
-            inputs:
-              SourceFolder: '$(System.DefaultWorkingDirectory)'
-              Contents: '.env'
+          # - task: DeleteFiles@1
+          #   displayName: Delete .env file
+          #   inputs:
+          #     SourceFolder: '$(System.DefaultWorkingDirectory)'
+          #     Contents: '.env'
   
 
 
