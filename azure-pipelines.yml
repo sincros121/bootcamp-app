@@ -44,7 +44,8 @@ stages:
       displayName: 'npm install'
       inputs:
         cwd: '$(System.DefaultWorkingDirectory)'
-        command: 'install -save-dev nodemon@2'
+        command: 'install'
+        arguments: '-save-dev nodemon@2'
       
     # - task: DeleteFiles@1
     #   displayName: Delete non artifact files
