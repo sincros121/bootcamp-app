@@ -17,9 +17,6 @@ resources:
       branches:
         include:
         - master
-      paths:
-        exclude:
-        - README.md
 
 
 pool: 'self-hosted-stas'
