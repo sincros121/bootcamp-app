@@ -116,8 +116,8 @@ stages:
 
           - task: Ansible@0
             displayName: Deploy using ansible
-            retryCountOnTaskFailure: 5
             timeoutInMinutes: 5 
+            retryCountOnTaskFailure: 5
             inputs:
               ansibleInterface: 'agentMachine'
               playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
@@ -184,8 +184,8 @@ stages:
 
           - task: Ansible@0
             displayName: Deploy using ansible
-            retryCountOnTaskFailure: 5
             timeoutInMinutes: 5 
+            retryCountOnTaskFailure: 5
             inputs:
               ansibleInterface: 'agentMachine'
               playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/deploy.yaml'
