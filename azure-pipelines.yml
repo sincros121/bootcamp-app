@@ -39,6 +39,7 @@ stages:
       inputs:
         cwd: '$(System.DefaultWorkingDirectory)'
         command: 'install'
+        arguments: '-g'
 
     # - task: Npm@0
     #   displayName: 'npm install'
