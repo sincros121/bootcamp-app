@@ -17,7 +17,7 @@ resources:
       batch: true
       branches:
         include:
-        - azure-pipelines
+        - master
 
 # trigger: 
 # - master
