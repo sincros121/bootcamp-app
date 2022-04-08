@@ -20,7 +20,7 @@ resources:
     #     - master
 
 trigger: 
-- master
+- azure-pipelines
 
 pool: 'self-hosted-stas'
 
