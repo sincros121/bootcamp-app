@@ -22,7 +22,7 @@ resources:
 trigger: 
   branches:
     include:
-      - main
+      - bootcamp-app
   batch: true
 
 pool: 'self-hosted-stas'
