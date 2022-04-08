@@ -34,11 +34,11 @@ stages:
     - checkout: self
       displayName: Clone latest web-application repo
 
-    - task: Npm@0
-      displayName: 'npm install'
-      inputs:
-        cwd: '$(System.DefaultWorkingDirectory)'
-        command: 'install'
+    # - task: Npm@0
+    #   displayName: 'npm install'
+    #   inputs:
+    #     cwd: '$(System.DefaultWorkingDirectory)'
+    #     command: 'install'
 
     - task: Npm@0
       displayName: 'npm install'
