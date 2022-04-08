@@ -8,11 +8,11 @@ resources:
     ref: main
     endpoint: sincros121
 
-  - repository: bootcamp-app      
-    type: github
-    name: sincros121/bootcamp-app
-    endpoint: sincros121
-    ref: master
+  # - repository: bootcamp-app      
+  #   type: github
+  #   name: sincros121/bootcamp-app
+  #   endpoint: sincros121
+  #   ref: master
     # trigger:
     #   # batch: true
     #   branches:
@@ -20,7 +20,10 @@ resources:
     #     - master
 
 trigger: 
-- self
+  branches:
+    include:
+      - master
+  batch: true
 
 pool: 'self-hosted-stas'
 
