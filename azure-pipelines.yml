@@ -68,7 +68,7 @@ stages:
 
 
 
-- stage: Stage Deployment
+- stage: Stage_deployment
   displayName: Stage
   
   variables: 
@@ -139,7 +139,7 @@ stages:
 
 
 
-- stage: Prod Deployment
+- stage: Prod_deployment
   displayName: Prod
   
   variables: 
