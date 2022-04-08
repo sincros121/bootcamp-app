@@ -63,7 +63,7 @@ stages:
       displayName: Archive files
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: false
+        includeRootFolder: true
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/bootcamp-app.zip'
         replaceExistingArchive: true
