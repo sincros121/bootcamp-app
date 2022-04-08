@@ -70,7 +70,7 @@ stages:
     #     sevenZipCompression: none
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(Build.SourceDirectory)'
+        SourceFolder: '$(Build.SourcesDirectory)'
         Contents: '**'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         CleanTargetFolder: true
