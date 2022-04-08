@@ -18,7 +18,6 @@ resources:
         include:
         - master
 
-# 
 pool: 'self-hosted-stas'
 
 stages:
