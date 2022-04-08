@@ -22,7 +22,7 @@ resources:
 trigger: 
   branches:
     include:
-      - sincros121/bootcamp-app
+      - main
   batch: true
 
 pool: 'self-hosted-stas'
