@@ -19,8 +19,8 @@ resources:
         include:
         - master
 
-trigger: 
-- azure-pipelines
+# trigger: 
+# - azure-pipelines
 
 pool: 'self-hosted-stas'
 
