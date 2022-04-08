@@ -63,10 +63,11 @@ stages:
       displayName: Archive files
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: true
+        includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/bootcamp-app.zip'
         replaceExistingArchive: true
+        sevenZipCompression: none
 
     # - task: PublishPipelineArtifact@1
     #   displayName: Publish artifacts
