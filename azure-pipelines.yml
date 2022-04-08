@@ -142,7 +142,7 @@ stages:
 
   jobs:
   - deployment: Deploy
-    environment: stage
+    environment: prod
     strategy:
       runOnce:
         deploy:
