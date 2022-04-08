@@ -177,8 +177,8 @@ stages:
 
               # Okta configuration
               OKTA_ORG_URL=https://dev-77800982.okta.com
-              OKTA_CLIENT_ID=$(OKTA-client-ID-$(Environment.Name))
-              OKTA_CLIENT_SECRET=$(okta-client-secret-$(Environment.Name))" | cat > .env
+              OKTA_CLIENT_ID=$(OKTA-client-ID-prod)
+              OKTA_CLIENT_SECRET=$(okta-client-secret-prod)" | cat > .env
             displayName: Crate .env file
 
 
