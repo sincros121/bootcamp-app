@@ -18,11 +18,11 @@ resources:
         include:
         - master
 
-trigger: 
-  branches:
-    include:
-      - bootcamp-app
-  batch: true
+# trigger: 
+#   branches:
+#     include:
+#       - bootcamp-app
+#   batch: true
 
 pool: 'self-hosted-stas'
 
