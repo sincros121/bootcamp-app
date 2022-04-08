@@ -10,9 +10,10 @@ resources:
 
   - repository: bootcamp-app      
     type: github
-    name: sincros121/Weight-tracker-ansible-pipeline
+    name: sincros121/bootcamp-app
     endpoint: sincros121
     trigger:
+      batch: true
       branches:
         include:
         - master
@@ -20,9 +21,6 @@ resources:
         exclude:
         - README.md
 
-
-trigger:
-- master
 
 pool: 'self-hosted-stas'
 
