@@ -8,6 +8,18 @@ resources:
     ref: main
     endpoint: sincros121
 
+  - repository: bootcamp-app      
+    type: github
+    name: sincros121/Weight-tracker-ansible-pipeline
+    endpoint: sincros121
+    trigger:
+      branches:
+        include:
+        - master
+      paths:
+        exclude:
+        - README.md
+
 
 trigger:
 - master
