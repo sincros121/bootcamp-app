@@ -12,6 +12,7 @@ resources:
     type: github
     name: sincros121/bootcamp-app
     endpoint: sincros121
+    ref: master
     trigger:
       batch: true
       branches:
