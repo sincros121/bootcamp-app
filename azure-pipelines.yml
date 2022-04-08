@@ -13,14 +13,14 @@ resources:
     name: sincros121/bootcamp-app
     endpoint: sincros121
     ref: master
-    # trigger:
-    #   batch: true
-    #   branches:
-    #     include:
-    #     - master
+    trigger:
+      batch: true
+      branches:
+        include:
+        - master
 
-trigger: 
-- azure-pipelines
+# trigger: 
+# - azure-pipelines
 
 pool: 'self-hosted-stas'
 
