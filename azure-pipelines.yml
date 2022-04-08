@@ -58,16 +58,16 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: $(Build.ArtifactStagingDirectory)/bootcamp-app.zip
+        archiveFile: '$(Build.ArtifactStagingDirectory)/bootcamp-app.zip'
         replaceExistingArchive: true
 
-    - task: PublishPipelineArtifact@1
-      displayName: Publish artifacts
-      inputs:
-        targetPath: '$(Pipeline.Workspace)'
-        artifactName: 'drop'
-        artifactType: 'pipeline'
-        parallel: false
+    # - task: PublishPipelineArtifact@1
+    #   displayName: Publish artifacts
+    #   inputs:
+    #     targetPath: '$(Pipeline.Workspace)'
+    #     artifactName: 'drop'
+    #     artifactType: 'pipeline'
+    #     parallel: false
       
 
 
@@ -90,7 +90,7 @@ stages:
   - group: vault secrets - stage
 
   jobs:
-  - deployment: deploy
+  - deployment: Deploy
     environment: stage
     strategy:
       runOnce:
