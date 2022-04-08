@@ -19,7 +19,7 @@ resources:
         include:
         - master
 
-trigger: azure-pipelines.yml
+trigger: azure-pipelines
 
 pool: 'self-hosted-stas'
 
