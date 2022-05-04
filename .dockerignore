@@ -1,0 +1,10 @@
+node_modules
+azure-pipelines.yml
+templates
+docs
+LICENSE
+README.md
+.dockerignore
+.gitignore
+.git
+dockerfile
